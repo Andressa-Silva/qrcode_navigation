@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<launch>
+
+    <arg name="mission"/>
+
+    <node name="qr_detector_navigation" type="qr_detector_navigation.py" pkg="qr_detector" output="screen">
+        <param name="mission_number" value="$(arg mission)"/>
+    </node>
+</launch>
