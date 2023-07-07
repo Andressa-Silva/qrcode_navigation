@@ -1,4 +1,4 @@
-# QR-Code detection with CSI camera on Jetson
+# QR-Code detection with CSI camera on Jetson for autonomous navigation
 With Ubuntu 20
 
 ### To install dependencies:
