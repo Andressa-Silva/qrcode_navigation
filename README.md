@@ -19,9 +19,9 @@ pip install pyzbar
 roslaunch detector.launch mission:=1
 ```
 
-Mission 1: 
-Mission 2:
-Mission 3:
-Mission 4:
+Mission 1: Delivering the kit
+Mission 2: Scam in eletrical tower
+Mission 3: Searching for victims in tall building
+Mission 4: Return and land starting point
 
 OpenCV needs to be compiled with CUDA
