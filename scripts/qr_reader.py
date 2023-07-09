@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import rospy
 import cv2
+import math
 from pyzbar.pyzbar import decode
 from qr_detector.msg import Direction
 
@@ -12,6 +13,13 @@ class QRCodeReader():
         im = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
             
         qr_decoded = decode(im)
+
+        imgHeight, imgWidth = im.shape
+
+        centerImgX = int(imgWidth/2)
+        centerImgY = int(imgHeight/2)
+
+        cv2.circle(frame, (centerImgX, centerImgY), 2, (255, 0, 0), 3)
 	    
         for decodedObject in qr_decoded:
             (x,y,w,h) = decodedObject.rect
@@ -20,6 +28,13 @@ class QRCodeReader():
             centerQrCodeX = int((x+w) - (w/2))
             centerQrCodeY = int((y+h) - (h/2))
             cv2.circle(frame, (centerQrCodeX, centerQrCodeY), 2, (255, 0, 0), 3)
+
+            distanceX = centerQrCodeX - centerImgX
+            distanceY = centerQrCodeY - centerImgY
+
+            cv2.line(frame, (centerQrCodeX,centerQrCodeY), (centerImgX,centerImgY), (255,0,0), 3)
+
+            self.distancia_pixels = math.sqrt(distanceX**2 + distanceY**2)
 
             barCode = str(decodedObject.data.decode("utf-8"))
             barCodeFiltered = barCode.split(",")

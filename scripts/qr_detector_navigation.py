@@ -22,7 +22,6 @@ def image_callback(mission_number):
         while not rospy.is_shutdown(): 
             ret, frame = capture.read()
 
-        if frame:
             qr = QRCodeReader(mission_number)
             qr._decoder(frame)
   
